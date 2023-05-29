@@ -9,45 +9,19 @@
 <p>
     <a asp-controller="VideoJuegos" asp-action="CreateVideojuego" class="btn btn-dark">Añadir</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdVideojuego)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Imagen)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdVideojuego)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                <img src="@item.Imagen" style="width:150px; height:auto" />
-            </td>
-            <td>
-                <a asp-controller="VideoJuegos" asp-action="Detalles" class="btn btn-info" asp-route-idvideojuego="@item.IdVideojuego">Detalles</a>
-                <a asp-controller="VideoJuegos" asp-action="DeleteVideojuego" class="btn btn-danger" asp-route-idvideojuego="@item.IdVideojuego">Eliminar</a>
-                <a asp-controller="VideoJuegos" asp-action="EditVideojuego" class="btn btn-warning" asp-route-idvideojuego="@item.IdVideojuego">Modificar</a>
-            </td>
-        </tr>
+            <div class="card float-sm-end" style="width: 18rem;">
+                <img class="card-img-top" src="@item.Imagen" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Nombre</h5>
+                    <p class="card-text">@item.Precio</p>
+                     <a asp-controller="VideoJuegos" asp-action="Detalles" class="btn btn-info" asp-route-idvideojuego="@item.IdVideojuego">Detalles</a>
+                     <a asp-controller="VideoJuegos" asp-action="DeleteVideojuego" class="btn btn-danger" asp-route-idvideojuego="@item.IdVideojuego">Eliminar</a>
+                    <a asp-controller="VideoJuegos" asp-action="EditVideojuego" class="btn btn-warning" asp-route-idvideojuego="@item.IdVideojuego">Modificar</a>
+                </div>
+            </div>
+               
 }
-    </tbody>
-</table>
+    
+
