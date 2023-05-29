@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 string connectionString = builder.Configuration.GetConnectionString("PostGresSqlVideojuegos");
-builder.Services.AddDbContext<VideoJuegosContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddDbContext<VideoJuegosContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 builder.Services.AddTransient<RepositoryVideoJuegos>();
 builder.Services.AddControllersWithViews();
 

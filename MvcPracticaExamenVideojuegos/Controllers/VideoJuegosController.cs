@@ -31,23 +31,24 @@ namespace MvcPracticaExamenVideojuegos.Controllers
 		public async Task<IActionResult> CreateVideojuego(VideoJuego videoJuego)
 		{
 			await this.repo.CreateVideoJuegoAsync(videoJuego.IdVideojuego, videoJuego.Nombre, videoJuego.Precio, videoJuego.Imagen);
-			return View();
+			return RedirectToAction("Index");
 		}
-		public IActionResult Edit()
+		public async Task<IActionResult> EditVideojuego(int idvideojuego)
 		{
-			return View();
+			VideoJuego videoJuego = await this.repo.FindVideoJuegoAsync(idvideojuego);
+			return View(videoJuego);
 		}
 
 		[HttpPost]
 		public async Task<IActionResult> EditVideojuego(VideoJuego videoJuego)
 		{
-			await this.repo.CreateVideoJuegoAsync(videoJuego.IdVideojuego, videoJuego.Nombre, videoJuego.Precio, videoJuego.Imagen);
-			return View();
+			await this.repo.UpdateVideoJuegoAsync(videoJuego.IdVideojuego, videoJuego.Nombre, videoJuego.Precio, videoJuego.Imagen);
+			return RedirectToAction("Index");
 		}
 		public async Task<IActionResult> DeleteVideojuego(int idvideojuego)
 		{
 			await this.repo.DeleteVideoJuegoAsync(idvideojuego);
-			return View();
+			return RedirectToAction("Index");
 		}
 	}
 }
